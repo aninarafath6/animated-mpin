@@ -52,21 +52,26 @@ class _MPinAnimationState extends State<MPinAnimation>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _sizeAnimation.value,
-      width: _sizeAnimation.value,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(
-          _sizeAnimation.value / 2,
+      height: 64,
+      width: 64,
+      alignment: Alignment.center,
+      child: Container(
+        height: _sizeAnimation.value,
+        width: _sizeAnimation.value,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(
+            _sizeAnimation.value / 2,
+          ),
         ),
-      ),
-      child: Center(
-        child: Opacity(
-          opacity: _opacityAnimation.value,
-          child: Transform.scale(
-            scale: _sizeAnimation.value / 44,
-            child: Text(
-              '1',
+        child: Center(
+          child: Opacity(
+            opacity: _opacityAnimation.value,
+            child: Transform.scale(
+              scale: _sizeAnimation.value / 44,
+              child: Text(
+                '1',
+              ),
             ),
           ),
         ),

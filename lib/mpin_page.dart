@@ -25,15 +25,18 @@ class MPinPage extends StatelessWidget {
           SafeArea(
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MPinAnimation(
-                    controller: ,
+                    controller: controller,
                   ),
-                  TextButton(
-                      onPressed: () {
-                        controller.animate();
-                      },
-                      child: Text(' animate'))
+                  MaterialButton(
+                    onPressed: () {
+                      controller.animate();
+                    },
+                    color: Colors.white,
+                    child: Text('animate'),
+                  ),
                 ],
               ),
             ),
