@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MPinAnimation extends StatefulWidget {
-  MPinAnimation({Key? key, required this.controller}) : super(key: key);
-  final MPinAnimationController controller;
+  MPinAnimation({Key? key, this.controller}) : super(key: key);
+  final MPinAnimationController? controller;
 
   @override
   _MPinAnimationState createState() => _MPinAnimationState(controller);
@@ -14,13 +14,17 @@ class _MPinAnimationState extends State<MPinAnimation>
   late AnimationController _controller;
   late Animation<double> _sizeAnimation;
   late Animation<double> _opacityAnimation;
+  String pin = '';
 
-  void animate() {
+  void animate(String input) {
     _controller.forward();
+    setState(() {
+      pin = input;
+    });
   }
 
   _MPinAnimationState(controller) {
-    controller.animate = animate;
+    controller?.animate = animate;
   }
 
   @override
@@ -70,7 +74,7 @@ class _MPinAnimationState extends State<MPinAnimation>
             child: Transform.scale(
               scale: _sizeAnimation.value / 44,
               child: Text(
-                '1',
+                pin,
               ),
             ),
           ),
@@ -81,5 +85,5 @@ class _MPinAnimationState extends State<MPinAnimation>
 }
 
 class MPinAnimationController {
-  late void Function() animate;
+  late void Function(String) animate;
 }
