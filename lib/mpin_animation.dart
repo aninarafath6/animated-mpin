@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MPinAnimation extends StatefulWidget {
-  const MPinAnimation({Key? key}) : super(key: key);
+  MPinAnimation({Key? key, required this.controller}) : super(key: key);
+  final MPinAnimationController controller;
 
   @override
-  _MPinAnimationState createState() => _MPinAnimationState();
+  _MPinAnimationState createState() => _MPinAnimationState(controller);
 }
 
 class _MPinAnimationState extends State<MPinAnimation>
@@ -14,11 +15,20 @@ class _MPinAnimationState extends State<MPinAnimation>
   late Animation<double> _sizeAnimation;
   late Animation<double> _opacityAnimation;
 
+  void animate() {
+    _controller.forward();
+  }
+
+  _MPinAnimationState(controller) {
+    controller.animate = animate;
+  }
+
   @override
   void initState() {
     _controller = new AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 300),
+      animationBehavior: AnimationBehavior.preserve,
     );
     _controller.addListener(
       () {
@@ -36,7 +46,6 @@ class _MPinAnimationState extends State<MPinAnimation>
       begin: 0,
       end: 1,
     ).animate(_controller);
-    _controller.forward();
     super.initState();
   }
 
@@ -64,4 +73,8 @@ class _MPinAnimationState extends State<MPinAnimation>
       ),
     );
   }
+}
+
+class MPinAnimationController {
+  late void Function() animate;
 }
