@@ -16,6 +16,12 @@ class _MPinAnimationState extends State<MPinAnimation>
   late Animation<double> _opacityAnimation;
   String pin = '';
 
+  void clear() {
+    setState(() {
+      pin = '';
+    });
+  }
+
   void animate(String input) {
     _controller.forward();
     setState(() {
@@ -25,6 +31,7 @@ class _MPinAnimationState extends State<MPinAnimation>
 
   _MPinAnimationState(controller) {
     controller?.animate = animate;
+    controller?.clear = clear;
   }
 
   @override
@@ -86,4 +93,5 @@ class _MPinAnimationState extends State<MPinAnimation>
 
 class MPinAnimationController {
   late void Function(String) animate;
+  late void Function() clear;
 }
