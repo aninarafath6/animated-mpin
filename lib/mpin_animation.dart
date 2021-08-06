@@ -44,7 +44,7 @@ class _MPinAnimationState extends State<MPinAnimation>
     );
     _sizeAnimation = Tween<double>(
       begin: 25,
-      end: 73,
+      end: 50,
     ).animate(_controller);
     _opacityAnimation = Tween<double>(
       begin: 0,
@@ -63,7 +63,7 @@ class _MPinAnimationState extends State<MPinAnimation>
         height: _sizeAnimation.value,
         width: _sizeAnimation.value,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: pin == '' ? Colors.white54 : Colors.white,
           borderRadius: BorderRadius.circular(
             _sizeAnimation.value / 2,
           ),

@@ -6,7 +6,8 @@ class MpinWidget extends StatefulWidget {
   final pinLength;
   final MPinController controller;
   MpinWidget({Key? key, required this.pinLength, required this.controller})
-      : super(key: key);
+      : assert(pinLength <= 6 && pinLength > 0),
+        super(key: key);
 
   @override
   _MpinWidgetState createState() => _MpinWidgetState(controller);
@@ -25,12 +26,15 @@ class _MpinWidgetState extends State<MpinWidget> {
     mpin += input;
 
     if (mpin.length <= widget.pinLength) {
-      _animationControllers[mpin.length].animate(input);
+      _animationControllers[mpin.length - 1].animate(input);
     }
   }
 
   void deleteInput() {
-    _animationControllers[0].animate('');
+    mpin = mpin.substring(0, mpin.length - 1);
+    if (mpin.length >= 0) {
+      _animationControllers[mpin.length].animate('');
+    }
   }
 
   @override

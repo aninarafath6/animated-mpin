@@ -30,11 +30,19 @@ class MPinPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MpinWidget(pinLength: 5, controller: mpinController),
+                  MpinWidget(pinLength: 6, controller: mpinController),
                   MaterialButton(
                     onPressed: () {
                       // controller.animate();
                       mpinController.addInput('1');
+                    },
+                    color: Colors.white,
+                    child: Text('1'),
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      // controller.animate();
+                      mpinController.delete();
                     },
                     color: Colors.white,
                     child: Text('1'),
